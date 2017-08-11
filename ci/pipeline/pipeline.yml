@@ -97,7 +97,7 @@ jobs:
         service_instance: configserver
         timeout: 300
         wait_for_service: true
-        configuration: '{ "count": 2, "git": { "uri": "https://github.com/scratches/vehicle-config-repo", "cloneOnStart": "true" } }'
+        configuration: '{ "count": 2, "git": { "uri": "https://github.com/bkamysz-pivotal/vehicle-config-repo", "cloneOnStart": "true" } }'
     - put: cf-create-service
       resource: cf-env
       params:
