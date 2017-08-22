@@ -817,9 +817,10 @@ function setupMapLegend() {
 
 	info.onAdd = function(map) {
 		this._div = L.DomUtil.create('div', 'info');
-		var img = '<img src="https://www.mapbox.com/maki/renders/bus-18' + (L.Browser.retina ? '@2x' : '') + '.png" height="18" width="18">';
+		var imgMoving = '<img src="/images/green-bus.png" height="18" width="18">';
+        var imgStopped = '<img src="/images/red-bus.png" height="18" width="18">';
 		this._div.innerHTML = '<h4 style="color: black">RentMe Vehicles</h4>'
-				+ '<i class="faa-flash animated">' + img + '</i> Moving &nbsp;&nbsp;&nbsp;&nbsp; ' + img + ' Stopped <br/>'
+				+ '<i class="faa-flash animated">' + imgMoving + '</i> Moving &nbsp;&nbsp;&nbsp;&nbsp; ' + imgStopped + ' Stopped <br/>'
 				+ '<i class="fa fa-map-marker" style="color: green;"></i> Normal &nbsp;&nbsp;'
 				+ '<i class="fa fa-map-marker" style="color: blue"></i> ServiceInfo &nbsp;&nbsp;'
 				+ '<i class="fa fa-map-marker" style="color: yellow"></i> ServiceSoon &nbsp;&nbsp;'

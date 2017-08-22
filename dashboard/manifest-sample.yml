@@ -1,7 +1,0 @@
-applications:
-- name: dashboard
-  host: fleet-dashboard
-  services:
-#    - zipkin
-    - configserver
-    - eureka
