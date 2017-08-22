@@ -67,10 +67,6 @@ jobs:
       environment_variables:
         TRUST_CERTS: {{cf-api-uri}}
         CF_TARGET: {{cf-target-url}}
-        MONGODB_USERNAME: {{mongodb-username}}
-        MONGODB_PASSWORD: {{mongodb-password}}
-        MONGODB_HOST: {{mongodb-host}}
-        MONGODB_PORT: {{mongodb-port}}
 
 - name: prepare-cf-env
   public: true

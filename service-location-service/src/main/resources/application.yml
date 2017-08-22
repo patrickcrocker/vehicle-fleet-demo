@@ -4,4 +4,6 @@ server:
 spring:
   application:
     name: service-location-service
-  
+  data:
+    mongodb:
+      uri: ${vcap.services.mongodb.credentials.uri}
