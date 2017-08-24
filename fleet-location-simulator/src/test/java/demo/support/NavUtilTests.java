@@ -12,25 +12,22 @@
  */
 package demo.support;
 
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
-
+import demo.GpsSimulatorApplication;
+import demo.model.DirectionInput;
+import demo.model.Point;
+import demo.service.PathService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.annotation.IfProfileValue;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import demo.GpsSimulatorApplication;
-import demo.model.DirectionInput;
-import demo.model.Point;
-import demo.service.PathService;
-import demo.support.NavUtils;
+import javax.xml.bind.JAXBException;
+import java.util.List;
 
 /**
  * @author Gunnar Hillert
@@ -38,7 +35,7 @@ import demo.support.NavUtils;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @Configuration
-@SpringApplicationConfiguration(classes = {GpsSimulatorApplication.class})
+@ContextConfiguration(classes = {GpsSimulatorApplication.class})
 public class NavUtilTests {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NavUtilTests.class);

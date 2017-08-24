@@ -5,6 +5,12 @@ spring:
     name: fleet-location-simulator
 gpsSimmulator:
   googleApiKey: AIzaSyDvdz2cb4zfp8NQVFu4kdzXFoIcHG744I4
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
 
 ---
 spring:

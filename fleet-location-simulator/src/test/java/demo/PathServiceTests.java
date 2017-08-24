@@ -12,41 +12,38 @@
  */
 package demo;
 
-import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.xml.bind.JAXBException;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.annotation.IfProfileValue;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.google.maps.model.EncodedPolyline;
 import com.google.maps.model.LatLng;
-
 import demo.model.GpsSimulatorRequest;
 import demo.model.Point;
 import demo.model.ServiceLocation;
 import demo.model.SimulatorFixture;
 import demo.service.KmlService;
 import demo.service.PathService;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.IfProfileValue;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Gunnar Hillert
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @Configuration
-@SpringApplicationConfiguration(classes = {GpsSimulatorApplication.class})
+@ContextConfiguration(classes = {GpsSimulatorApplication.class})
 public class PathServiceTests {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PathServiceTests.class);

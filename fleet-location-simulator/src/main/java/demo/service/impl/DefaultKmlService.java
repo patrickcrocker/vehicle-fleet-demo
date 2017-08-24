@@ -63,8 +63,8 @@ public class DefaultKmlService implements KmlService {
 
 	@Override
 	public final void setupKmlIntegration(Set<Long> intanceIds, Point lookAtPoint, String kmlUrl) {
-		Assert.notEmpty(intanceIds);
-		Assert.isTrue(intanceIds.size() >= 1);
+		Assert.notEmpty(intanceIds, "Instance Ids is empty");
+		Assert.isTrue(intanceIds.size() >= 1, "Instance Ids size is one");
 
 		Kml kml = KmlFactory.createKml();
 		Document folder = KmlFactory.createDocument();

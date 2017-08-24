@@ -12,18 +12,16 @@
  */
 package demo.service.impl;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import demo.model.CurrentPosition;
+import demo.service.KmlService;
+import demo.service.PositionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-import demo.model.CurrentPosition;
-import demo.service.KmlService;
-import demo.service.PositionService;
 
 /**
  *
