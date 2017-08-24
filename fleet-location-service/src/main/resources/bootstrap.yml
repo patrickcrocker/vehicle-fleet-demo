@@ -3,25 +3,6 @@ server:
 spring:
   application:
     name: fleet-location-service
-security:
-  basic:
-    enabled: false
-management:
-  security:
-    enabled: false
-#  cloud:
-#    config:
-#      uri: ${CONFIG_SERVER_URI:${vcap.services.${PREFIX:}configserver.credentials.uri:http://localhost:8888}}
-#
-#---
-#spring:
-#  profiles: cloud
-#eureka:
-#  instance:
-#    hostname: ${vcap.application.uris[0]:localhost}
-#    nonSecurePort: 80
-#    metadataMap:
-#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-#  client:
-#    serviceUrl:
-#      defaultZone: ${vcap.services.${PREFIX:}eureka.credentials.uri:http://${PREFIX:}eureka.${APPLICATION_DOMAIN:cfapps.io}}/eureka/
+  jpa:
+    hibernate:
+      ddl-auto: update
