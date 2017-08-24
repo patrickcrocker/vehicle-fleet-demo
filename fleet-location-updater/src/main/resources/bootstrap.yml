@@ -6,7 +6,8 @@ spring:
   cloud:
     stream:
       bindings:
-        input: vehicles
+        input:
+          destination: vehicles
 
 ---
 spring:
