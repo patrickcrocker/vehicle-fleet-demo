@@ -1,0 +1,45 @@
+---
+resource_types:
+- name: cf-cli-resource
+  type: docker-image
+  source:
+    repository: pivotalpa/cf-cli-resource
+    tag: latest
+
+groups:
+- name: release
+  jobs:
+  - build-dashboard
+
+- name: build-dashboard
+  public: true
+  serial: true
+  plan:
+  - get: vehicle-fleet-demo
+    trigger: true
+  - task: build
+    file: vehicle-fleet-demo/ci/tasks/build-dashboard/task.yml
+  - put: cf-zero-downtime-push
+    resource: cf-env
+    params:
+      command: zero-downtime-push
+      manifest: build-output/manifest.yml
+      environment_variables:
+        TRUST_CERTS: {{cf-api-uri}}
+        CF_TARGET: {{cf-target-url}}
+
+resources:
+- name: vehicle-fleet-demo
+  type: git
+  source:
+    uri: {{git-uri}}
+    branch: {{git-branch}}
+- name: cf-env
+  type: cf-cli-resource
+  source:
+    api: {{cf-api-uri}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    skip_cert_check: true
+    org: {{cf-org}}
+    space: {{cf-space}}

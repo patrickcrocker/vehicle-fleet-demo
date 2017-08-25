@@ -1,0 +1,20 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: java
+    tag: '8'
+
+inputs:
+- name: vehicle-fleet-demo
+
+outputs:
+- name: build-output
+
+params:
+  TERM: dumb
+
+run:
+  path: vehicle-fleet-demo/ci/tasks/build-dashboard/task.sh
