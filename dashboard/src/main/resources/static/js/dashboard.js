@@ -138,11 +138,11 @@ function icon(symbol, color, flash, size) {
 	size = size || [35, 90];
 	color = (color || '7e7e7e').replace('#', '');
 	var icon = L.icon({
-		iconUrl: 'http://a.tiles.mapbox.com/v4/marker/pin-l' + (symbol ? "-" + symbol : '') + '+' + color + (L.Browser.retina ? '@2x' : '') + '.png?access_token=' + mapToken,
+		iconUrl: 'https://a.tiles.mapbox.com/v4/marker/pin-l' + (symbol ? "-" + symbol : '') + '+' + color + (L.Browser.retina ? '@2x' : '') + '.png?access_token=' + mapToken,
 		iconSize: [35, 90],
 	    iconAnchor: [size[0] / 2, size[1] / 2],
 	    popupAnchor: [0, -size[1] / 2],
-	    flashIconUrl: flash ? 'http://a.tiles.mapbox.com/v4/marker/pin-l+' + color + (L.Browser.retina ? '@2x' : '') + '.png?access_token=' + mapToken : undefined
+	    flashIconUrl: flash ? 'https://a.tiles.mapbox.com/v4/marker/pin-l+' + color + (L.Browser.retina ? '@2x' : '') + '.png?access_token=' + mapToken : undefined
 	});
 	return icon;
 }
