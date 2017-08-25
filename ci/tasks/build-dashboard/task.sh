@@ -7,4 +7,4 @@ popd
 
 cp vehicle-fleet-demo/dashboard/target/dashboard-1.0.0.BUILD-SNAPSHOT.jar build-output/
 
-cp vehicle-fleet-demo/manifest.yml build-output/
+cp vehicle-fleet-demo/manifest-dashboard.yml build-output/
