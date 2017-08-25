@@ -16,27 +16,20 @@
 
 package demo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.geo.Point;
-import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @author Dave Syer
  *
  */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@Data
-@RequiredArgsConstructor(onConstructor=@__(@PersistenceConstructor))
 @Document
 public class ServiceLocation {
 
@@ -46,7 +39,7 @@ public class ServiceLocation {
 	private String address2;
 	private String city;
 	@JsonIgnore
-	private final @GeoSpatialIndexed Point location;
+	private @GeoSpatialIndexed Point location;
 	private String state;
 	private String zip;
 	private String type;
@@ -57,7 +50,28 @@ public class ServiceLocation {
 	}
 
 	@JsonCreator
-	public ServiceLocation(@JsonProperty("latitude") double latitude, @JsonProperty("longitude") double longitude) {
+	public ServiceLocation(@JsonProperty("address1") String address1,
+						   @JsonProperty("address2") String address2,
+						   @JsonProperty("city") String city,
+						   @JsonProperty("location") Point location,
+						   @JsonProperty("state") String state,
+						   @JsonProperty("zip") String zip,
+						   @JsonProperty("type") String type,
+						   @JsonProperty("latitude") double latitude,
+						   @JsonProperty("longitude") double longitude) {
+		this.id = id;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.location = location;
+		this.state = state;
+		this.zip = zip;
+		this.type = type;
+		this.location = new Point(longitude, latitude);
+	}
+
+	public ServiceLocation(double latitude,
+						   double longitude) {
 		this.location = new Point(longitude, latitude);
 	}
 
@@ -69,4 +83,67 @@ public class ServiceLocation {
 		return this.location.getX();
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Point getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

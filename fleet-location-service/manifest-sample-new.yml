@@ -1,8 +1,0 @@
-applications:
-- name: fleet-location-service
-  path: target/fleet-location-service-1.4.6.RELEASE.jar/
-  services:
-    - mysql
-#    - zipkin
-    - configserver
-    - eureka

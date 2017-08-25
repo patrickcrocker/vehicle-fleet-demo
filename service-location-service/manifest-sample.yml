@@ -6,3 +6,4 @@ applications:
     - configserver
     - eureka
   path: target/service-location-service-1.0.0.BUILD-SNAPSHOT.jar
+  buildpack: java_buildpack_offline

@@ -6,3 +6,4 @@ applications:
 #    - zipkin
     - configserver
     - eureka
+  buildpack: java_buildpack_offline

@@ -16,22 +16,17 @@
 
 package demo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Embeddable;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@AllArgsConstructor
 @Embeddable
-@RequiredArgsConstructor
 public class UnitInfo {
 
-	private final String unitVin;
+	private String unitVin;
 	private String engineMake;
 	private String customerName;
 	private String unitNumber;
@@ -41,4 +36,54 @@ public class UnitInfo {
 		this.unitVin = "";
 	}
 
+	@JsonCreator
+	public UnitInfo(@JsonProperty("unitVin") String unitVin,
+					@JsonProperty("engineMake") String engineMake,
+					@JsonProperty("customerName") String customerName,
+					@JsonProperty("unitNumber") String unitNumber)
+	{
+		this.unitVin = unitVin;
+		this.engineMake = engineMake;
+
+		this.customerName = customerName;
+		this.unitNumber = unitNumber;
+	}
+
+	@JsonCreator
+	public UnitInfo(@JsonProperty("unitVin")String unitVin)
+	{
+		this.unitVin = unitVin;
+	}
+
+	public String getUnitVin() {
+		return unitVin;
+	}
+
+	public void setUnitVin(String unitVin) {
+		this.unitVin = unitVin;
+	}
+
+	public String getEngineMake() {
+		return engineMake;
+	}
+
+	public void setEngineMake(String engineMake) {
+		this.engineMake = engineMake;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getUnitNumber() {
+		return unitNumber;
+	}
+
+	public void setUnitNumber(String unitNumber) {
+		this.unitNumber = unitNumber;
+	}
 }

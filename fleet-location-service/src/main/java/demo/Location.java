@@ -25,9 +25,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,8 +38,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
-@RequiredArgsConstructor
 @Entity
 public class Location {
 
@@ -62,7 +57,7 @@ public class Location {
 	private Long id;
 	@Embedded
 	@AttributeOverride(name = "engineMake", column = @Column(name = "unit_engine_make"))
-	private final UnitInfo unitInfo;
+	private UnitInfo unitInfo;
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name = "fmi", column = @Column(name = "unit_fmi")),
@@ -92,12 +87,221 @@ public class Location {
 	}
 
 	@JsonCreator
-	private Location(@JsonProperty("vin") String vin) {
+	public Location(@JsonProperty("unitInfo") UnitInfo unitInfo,
+					@JsonProperty("unitFault") UnitFault unitFault,
+					@JsonProperty("latitude") double latitude,
+					@JsonProperty("longitude") double longitude,
+					@JsonProperty("heading") String heading,
+					@JsonProperty("gpsSpeed") double gpsSpeed,
+					@JsonProperty("gpsStatus") GpsStatus gpsStatus,
+					@JsonProperty("odometer") double odometer,
+					@JsonProperty("totalEngineTime") double totalEngineTime,
+					@JsonProperty("totalIdleTime") double totalIdleTime,
+					@JsonProperty("totalFuelUsage") double totalFuelUsage,
+					@JsonProperty("address") String address,
+					@JsonProperty("timestamp") Date timestamp,
+					@JsonProperty("tspProvider") String tspProvider,
+					@JsonProperty("vehicleMovementType") VehicleMovementType vehicleMovementType,
+					@JsonProperty("serviceType") String serviceType,
+					@JsonProperty("faultCode") FaultCode faultCode,
+					@JsonProperty("vin") String vin) {
+
+		this.unitInfo = unitInfo != null ? unitInfo : new UnitInfo(vin);
+		this.unitFault = unitFault;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.heading = heading;
+		this.gpsSpeed = gpsSpeed;
+		this.gpsStatus = gpsStatus;
+		this.odometer = odometer;
+		this.totalEngineTime = totalEngineTime;
+		this.totalIdleTime = totalIdleTime;
+		this.totalFuelUsage = totalFuelUsage;
+		this.address = address;
+		this.timestamp = timestamp;
+		this.tspProvider = tspProvider;
+		this.vehicleMovementType = vehicleMovementType;
+		this.serviceType = serviceType;
+		this.faultCode = faultCode;
+	}
+
+	protected Location(String vin) {
 		this.unitInfo = new UnitInfo(vin);
+	}
+
+	protected Location(UnitInfo unitInfo) {
+		this.unitInfo = unitInfo;
 	}
 
 	public String getVin() {
 		return this.unitInfo == null ? null : this.unitInfo.getUnitVin();
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public UnitInfo getUnitInfo() {
+		return unitInfo;
+	}
+
+	public void setUnitInfo(UnitInfo unitInfo) {
+		this.unitInfo = unitInfo;
+	}
+
+	public UnitFault getUnitFault() {
+		return unitFault;
+	}
+
+	public void setUnitFault(UnitFault unitFault) {
+		this.unitFault = unitFault;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getHeading() {
+		return heading;
+	}
+
+	public void setHeading(String heading) {
+		this.heading = heading;
+	}
+
+	public double getGpsSpeed() {
+		return gpsSpeed;
+	}
+
+	public void setGpsSpeed(double gpsSpeed) {
+		this.gpsSpeed = gpsSpeed;
+	}
+
+	public GpsStatus getGpsStatus() {
+		return gpsStatus;
+	}
+
+	public void setGpsStatus(GpsStatus gpsStatus) {
+		this.gpsStatus = gpsStatus;
+	}
+
+	public double getOdometer() {
+		return odometer;
+	}
+
+	public void setOdometer(double odometer) {
+		this.odometer = odometer;
+	}
+
+	public double getTotalEngineTime() {
+		return totalEngineTime;
+	}
+
+	public void setTotalEngineTime(double totalEngineTime) {
+		this.totalEngineTime = totalEngineTime;
+	}
+
+	public double getTotalIdleTime() {
+		return totalIdleTime;
+	}
+
+	public void setTotalIdleTime(double totalIdleTime) {
+		this.totalIdleTime = totalIdleTime;
+	}
+
+	public double getTotalFuelUsage() {
+		return totalFuelUsage;
+	}
+
+	public void setTotalFuelUsage(double totalFuelUsage) {
+		this.totalFuelUsage = totalFuelUsage;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getTspProvider() {
+		return tspProvider;
+	}
+
+	public void setTspProvider(String tspProvider) {
+		this.tspProvider = tspProvider;
+	}
+
+	public VehicleMovementType getVehicleMovementType() {
+		return vehicleMovementType;
+	}
+
+	public void setVehicleMovementType(VehicleMovementType vehicleMovementType) {
+		this.vehicleMovementType = vehicleMovementType;
+	}
+
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public FaultCode getFaultCode() {
+		return faultCode;
+	}
+
+	public void setFaultCode(FaultCode faultCode) {
+		this.faultCode = faultCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Location{" +
+				"id=" + id +
+				", unitInfo=" + unitInfo +
+				", unitFault=" + unitFault +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				", heading='" + heading + '\'' +
+				", gpsSpeed=" + gpsSpeed +
+				", gpsStatus=" + gpsStatus +
+				", odometer=" + odometer +
+				", totalEngineTime=" + totalEngineTime +
+				", totalIdleTime=" + totalIdleTime +
+				", totalFuelUsage=" + totalFuelUsage +
+				", address='" + address + '\'' +
+				", timestamp=" + timestamp +
+				", tspProvider='" + tspProvider + '\'' +
+				", vehicleMovementType=" + vehicleMovementType +
+				", serviceType='" + serviceType + '\'' +
+				", faultCode=" + faultCode +
+				'}';
+	}
 }
