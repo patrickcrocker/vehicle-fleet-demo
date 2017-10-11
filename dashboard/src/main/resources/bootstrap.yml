@@ -1,6 +1,7 @@
 spring:
   application:
     name: dashboard
+
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 ribbon:
   ConnectTimeout: 3000
@@ -10,6 +11,12 @@ stomp.url: localhost:9007/stomp
 ---
 spring:
   profiles: test
+
+security:
+    enabled: false
+    basic:
+      enabled: false
+
 zuul:
   routes:
     fleet-location-service:
@@ -32,11 +39,10 @@ spring:
   profiles: dev
 
 security:
-#  enabled: false
-  basic:
-    enabled: false
+  enabled: false
+     basic:
+      enabled: false
 
 management:
   security:
-    enabled: false
-
+     enabled: false

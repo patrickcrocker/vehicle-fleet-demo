@@ -19,3 +19,14 @@ service-location-service:
   ribbon:
     listOfServers: localhost:9001
 hystrix.command.default.execution.isolation.strategy: SEMAPHORE
+---
+spring:
+  profiles: dev
+security:
+#  enabled: false
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false

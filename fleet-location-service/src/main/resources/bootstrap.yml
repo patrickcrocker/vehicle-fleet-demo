@@ -6,3 +6,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+---
+spring:
+  profiles: dev
+
+security:
+#  enabled: false
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false

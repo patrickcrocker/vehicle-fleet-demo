@@ -6,4 +6,17 @@ spring:
     name: service-location-service
   data:
     mongodb:
-      uri: ${vcap.services.mongodb.credentials.uri}
+      uri: ${vcap.services.mongodb.credentials.uri:mongodb://localhost:27017/test}
+
+---
+spring:
+  profiles: dev
+
+security:
+#  enabled: false
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false

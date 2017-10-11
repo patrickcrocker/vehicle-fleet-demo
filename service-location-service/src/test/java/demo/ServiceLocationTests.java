@@ -17,10 +17,17 @@
 package demo;
 
 import static org.junit.Assert.assertEquals;
+import static org.springframework.integration.support.management.graph.LinkNode.Type.input;
 
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.databind.DeserializationFeature;
+
+import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * @author Dave Syer
@@ -38,21 +45,30 @@ public class ServiceLocationTests {
 	@Test
 	public void jsonWithId() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		ServiceLocation input = new ServiceLocation(52,  0);
+		ServiceLocation input = new ServiceLocation(52.0,  0.0);
 		input.setId("102");
 		ServiceLocation value = mapper.readValue(mapper.writeValueAsString(input), ServiceLocation.class);
-		assertEquals(52, value.getLatitude(), 0.01);
+		assertEquals(52.0, value.getLatitude(), 0.01);
 		assertEquals("102", value.getId());
 	}
 
 	@Test
 	public void jsonWithLocation() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		ServiceLocation input = new ServiceLocation(52, 0);
+		ServiceLocation input = new ServiceLocation(52.0, 0.0);
 		input.setAddress1("Down");
 		ServiceLocation value = mapper.readValue(mapper.writeValueAsString(input), ServiceLocation.class);
-		assertEquals(52, value.getLatitude(), 0.01);
+		assertEquals(52.0, value.getLatitude(), 0.01);
 		assertEquals("Down", value.getAddress1());
 	}
 
+	@Test
+	public void jsonTest() throws Exception {
+		ObjectMapper mapper=new ObjectMapper();
+		Map<String,String> dt=new Hashtable();
+		dt.put("1", "welcome");
+		dt.put("2", "bye");
+		String jsonString = mapper.writeValueAsString(dt);
+		assertEquals("{\"2\":\"bye\",\"1\":\"welcome\"}", jsonString);
+	}
 }
