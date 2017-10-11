@@ -30,13 +30,10 @@ eureka:
 ---
 spring:
   profiles: dev
-
-security:
-#  enabled: false
-  basic:
-    enabled: false
-
 management:
   security:
+    enabled: false
+security:
+  basic:
     enabled: false
 
