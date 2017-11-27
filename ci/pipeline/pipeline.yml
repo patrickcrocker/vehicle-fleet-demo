@@ -66,7 +66,6 @@ jobs:
       manifest: build-output/manifest.yml
       environment_variables:
         TRUST_CERTS: {{cf-api-uri}}
-        CF_TARGET: {{cf-target-url}}
 
 - name: prepare-cf-env
   public: true
@@ -79,8 +78,8 @@ jobs:
       resource: cf-env
       params:
         command: create-service
-        service: p-mysql
-        plan: 100mb
+        service: cleardb
+        plan: spark
         service_instance: mysql
         timeout: 300
         wait_for_service: true
