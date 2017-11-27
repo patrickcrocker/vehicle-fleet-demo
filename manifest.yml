@@ -1,40 +1,40 @@
 applications:
-- name: fleet-location-simulator
+- name: s1p-fleet-location-simulator
   path: fleet-location-simulator-1.0.0.BUILD-SNAPSHOT.jar
   services:
     - rabbitmq
 #    - zipkin
     - configserver
     - eureka
-- name: fleet-location-ingest
+- name: s1p-fleet-location-ingest
   path: fleet-location-ingest-1.0.0.BUILD-SNAPSHOT.jar
   services:
     - rabbitmq
 #    - zipkin
     - configserver
     - eureka
-- name: fleet-location-updater
+- name: s1p-fleet-location-updater
   path: fleet-location-updater-1.0.0.BUILD-SNAPSHOT.jar
   services:
     - rabbitmq
 #    - zipkin
     - configserver
     - eureka
-- name: fleet-location-service
+- name: s1p-fleet-location-service
   path: fleet-location-service-1.0.0.BUILD-SNAPSHOT.jar
   services:
     - mysql
 #    - zipkin
     - configserver
     - eureka
-- name: service-location-service
+- name: s1p-service-location-service
   path: service-location-service-1.0.0.BUILD-SNAPSHOT.jar
   services:
     - mongodb
 #    - zipkin
     - configserver
     - eureka
-- name: dashboard
+- name: s1p-dashboard
   path: dashboard-1.0.0.BUILD-SNAPSHOT.jar
   host: fleet-dashboard
   services:
