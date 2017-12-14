@@ -16,5 +16,8 @@ outputs:
 params:
   TERM: dumb
 
+caches:
+- path: project/.m2repository
+
 run:
   path: vehicle-fleet-demo/ci/tasks/build-service/task.sh

@@ -2,7 +2,7 @@
 set -e
 
 pushd vehicle-fleet-demo
-    ./mvnw clean install
+    ./mvnw clean install -Dmaven.repo.local=$PWD/.m2repository
 popd
 
 cp vehicle-fleet-demo/fleet-location-service/target/fleet-location-service-1.0.0.BUILD-SNAPSHOT.jar build-output/
